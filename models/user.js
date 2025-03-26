@@ -1,7 +1,7 @@
 "use strict";
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../src/config/database.js"); // Asegúrate de importar la conexión
-
+//hola
 class User extends Model {}
 
 User.init(
