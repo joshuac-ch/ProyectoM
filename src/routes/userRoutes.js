@@ -4,6 +4,7 @@ const {GetAlmacen,CreateAlmacen,ShowAlmacen,PutAlmacen,DestroyAlmacen}=require("
 const {GetCategoria,CreateCate,ShowCate,UpdateCate,DeleteUpdate}=require("../controllers/categoriaController.js")
 const {GetSubCategoria,CreateSubCategoria,ShowSubcategoria,UpdateSubcategoria,DeleSubcategoria}  =require('../controllers/subcategoriaController.js')
 const {GetProveedor,CreateProveedor,ShowProveedor,UpdateProveedor,DeleteProveedor}=require("../controllers/proveedorController.js")
+const {GetCLientes,CreateClient,showClient,UpdateCliente,DeleteCliente} =require("../controllers/clientesController.js")
 module.exports = router = express();
 //--------------------------------------
 //Usuario
@@ -49,3 +50,8 @@ router.delete("/proveedor/d/:id",DeleteProveedor)
 //---------------------------------------
 //Clientes
 //---------------------------------------
+router.get("/cliente/g",GetCLientes)
+router.post("/cliente/c",CreateClient)
+router.get("/cliente/s/:id",showClient)
+router.put("/cliente/u/:id",UpdateCliente)
+router.delete("/cliente/d/:id",DeleteCliente)
