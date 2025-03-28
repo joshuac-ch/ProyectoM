@@ -46,3 +46,6 @@ router.post("/proveedor/c",CreateProveedor)
 router.get("/proveedor/s/:id",ShowProveedor)
 router.put("/proveedor/u/:id",UpdateProveedor)
 router.delete("/proveedor/d/:id",DeleteProveedor)
+//---------------------------------------
+//Clientes
+//---------------------------------------
