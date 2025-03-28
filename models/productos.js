@@ -62,7 +62,17 @@ const sequelize = require("../src/config/database.js"); // Asegúrate de importa
       references: {
         model: "proveedor",
         key: "id"
-      }            
+      }
+
+    }
+    ,subcategoria_id:{
+      type:DataTypes.BIGINT,
+      allowNull: false,
+      references: {
+        model: "subcategoria",
+        key: "id"
+      }
+
     }
 
   }, {
