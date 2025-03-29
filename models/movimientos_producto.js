@@ -54,6 +54,7 @@ const sequelize = require("../src/config/database.js"); // Asegúrate de importa
   }, {
     sequelize,
     modelName: 'movimientos_producto',
-    timestamps:false
+    timestamps:false,
+    freezeTableName:true
     });
  module.exports=movimientos_producto;
