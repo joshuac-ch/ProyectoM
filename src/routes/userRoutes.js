@@ -7,6 +7,9 @@ const {GetProveedor,CreateProveedor,ShowProveedor,UpdateProveedor,DeleteProveedo
 const {GetCLientes,CreateClient,showClient,UpdateCliente,DeleteCliente} =require("../controllers/clientesController.js")
 const {GetProductos,InserProductos,ShowProductos,UpdateProductos,DeleteProducto} =require("../controllers/productosController.js")
 const {GetCaja,InsertCaja,UpdateCaja,DeleteCaja,ShowCaja}=require("../controllers/cajaController.js")
+const {GetVentas,InsertVenta,UpdateVenta,ShowVenta,DeleteVenta}=require("../controllers/ventasController.js")
+const {GetDetalle,InsertDetalle,UpdateDetalle,DeleteDetalle,ShowDetalle}=require("../controllers/detalleVentasController.js")
+const {GetMovimiento,InsetMovimento,Showmovimiento,UpdateMovimiento,DestroyMovimiento}=require("../controllers/movimientosProductoController.js")
 module.exports = router = express();
 //--------------------------------------
 //Usuario
@@ -73,3 +76,27 @@ router.post("/caja/c",InsertCaja)
 router.put("/caja/u/:id",UpdateCaja)
 router.get("/caja/s/:id",ShowCaja)
 router.delete("/caja/d/:id",DeleteCaja)
+//---------------------------------------
+//Ventas
+//---------------------------------------
+router.get("/venta/g",GetVentas)
+router.post("/venta/c",InsertVenta)
+router.put("/venta/u/:id",UpdateVenta)
+router.get("/venta/s/:id",ShowVenta)
+router.delete("/venta/d/:id",DeleteVenta)
+//---------------------------------------
+//Detalle Venta
+//---------------------------------------
+router.get("/detalle/g",GetDetalle)
+router.post("/detalle/c",InsertDetalle)
+router.put("/detalle/u/:id",UpdateDetalle)
+router.get("/detalle/s/:id",ShowDetalle)
+router.delete("/detalle/d/:id",DeleteDetalle)
+//---------------------------------------
+//Detalle Venta
+//---------------------------------------
+router.get("/movimiento/g",GetMovimiento)
+router.post("/movimiento/c",InsetMovimento)
+router.get("/movimiento/s/:id",Showmovimiento)
+router.put("/movimiento/u/:id",UpdateMovimiento)
+router.delete("/movimiento/d/:id",DestroyMovimiento)
