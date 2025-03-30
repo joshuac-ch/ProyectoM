@@ -12,23 +12,24 @@ const GetProductos=async(req,res)=>{
 }
 const InserProductos=async(req,res)=>{
     try{
-        const {cantidad_disponible,fecha_vencimiento,precio_ingreso,precio_venta,descripcion,codigo_producto,estado_producto,nombre,unidad_medida,proveedor_id,almacen_id,subcategoria_id}=req.body
-        if(!cantidad_disponible||!fecha_vencimiento||!precio_ingreso||!precio_venta||!descripcion||!codigo_producto||!estado_producto||!nombre||!unidad_medida||!proveedor_id||!almacen_id||!subcategoria_id){
+        const {cantidad_disponible,fecha_vencimiento,precio_ingreso,precio_venta,image,descripcion,codigo_producto,estado_producto,nombre,unidad_medida,proveedor_id,almacen_id,subcategoria_id}=req.body
+        if(!cantidad_disponible||!image||!fecha_vencimiento||!precio_ingreso||!precio_venta||!descripcion||!codigo_producto||!estado_producto||!nombre||!unidad_medida||!proveedor_id||!almacen_id||!subcategoria_id){
            return res.status(404).json({message:"Faltan columnas por llenar"})
         }
         const insert=await Productos.create({
-            cantidad_disponible:2,
-            fecha_vencimiento:"2025-03-18",
-            precio_ingreso:2,
-            precio_venta:4,
-            descripcion:"bueno",
-            codigo_producto:"13DF",
-            estado_producto:"bueno",
-            nombre:"leche",
-            unidad_medida:"L",
-            proveedor_id:1,
-            almacen_id:1,
-            subcategoria_id:1
+            image,
+            cantidad_disponible,
+            fecha_vencimiento,
+            precio_ingreso,
+            precio_venta,
+            descripcion,
+            codigo_producto,
+            estado_producto,
+            nombre,
+            unidad_medida,
+            proveedor_id,
+            almacen_id,
+            subcategoria_id
         })
         res.status(200).json({message:"se creo el producto exitosamente",insert})
     }catch(e){
@@ -56,13 +57,14 @@ const UpdateProductos=async(req,res)=>{
         }
         const {cantidad_disponible,fecha_vencimiento,precio_ingreso,
             precio_venta,descripcion,codigo_producto,estado_producto,
-            nombre,unidad_medida,proveedor_id,almacen_id,subcategoria_id}=req.body
+            nombre,unidad_medida,proveedor_id,almacen_id,subcategoria_id,image}=req.body
             
-        if(!cantidad_disponible||!fecha_vencimiento||!precio_ingreso||!precio_venta||!descripcion||!codigo_producto||!estado_producto||!nombre||!unidad_medida||!proveedor_id||!almacen_id||!subcategoria_id){
+        if(!cantidad_disponible||!image||!fecha_vencimiento||!precio_ingreso||!precio_venta||!descripcion||!codigo_producto||!estado_producto||!nombre||!unidad_medida||!proveedor_id||!almacen_id||!subcategoria_id){
            return res.status(404).json({message:"Faltan columnas por llenar"})
         }
         await productos.update({
             cantidad_disponible,
+            image,
             fecha_vencimiento,
             precio_ingreso,
             precio_venta,

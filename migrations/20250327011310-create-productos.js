@@ -28,6 +28,9 @@ module.exports = {
       codigo_producto: {
         type: Sequelize.STRING
       },
+      image:{
+        type:Sequelize.STRING
+      },
       estado_producto: {
         type: Sequelize.STRING
       },

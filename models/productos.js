@@ -25,6 +25,9 @@ const sequelize = require("../src/config/database.js"); // Asegúrate de importa
     cantidad_disponible:{
     type:DataTypes.NUMBER
     },
+    image:{
+      type:DataTypes.STRING
+    },
     fecha_vencimiento:  {
       type:DataTypes.DATE
     },

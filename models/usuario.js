@@ -20,6 +20,15 @@ Usuario.init(
       primaryKey: true,
       autoIncrement: true
     },
+    nombre:{
+      type:DataTypes.STRING
+    },
+    apellido:{
+      type:DataTypes.STRING
+    },
+    rol:{
+      type:DataTypes.STRING
+    },
     username: {
       type: DataTypes.STRING,
       allowNull: false

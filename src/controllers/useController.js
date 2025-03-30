@@ -4,8 +4,8 @@ const bcrypt= require("bcrypt");
 // Crear usuario
 const createUser = async (req, res) => {
     try {
-        const { username, password,nombre,apellido,correo,telefono,dirrecion,rol,almacen_id } = req.body;
-        if(!username || !password || !nombre || !apellido || !correo || !telefono || !dirrecion || !rol || !almacen_id ){
+        const { username, password,nombre,apellido,correo,telefono,direccion,rol,almacen_id } = req.body;
+        if(!username || !password || !nombre || !apellido || !correo || !telefono || !direccion || !rol || !almacen_id ){
            return res.status(400).json({message:"Faltan columnas, los datos no estan completos"})
         }
         //Encriptar Contraseña
@@ -18,7 +18,7 @@ const createUser = async (req, res) => {
             apellido,
             correo,
             telefono,
-            dirrecion,
+            direccion,
             rol,
             almacen_id  });
            /* const newUser = await Usuario.create({

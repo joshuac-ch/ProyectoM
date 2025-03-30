@@ -14,11 +14,11 @@ module.exports = router = express();
 //--------------------------------------
 //Usuario
 //--------------------------------------
-router.post("/", createUser); // Crear usuario
-router.get("/s", getUsers); // Obtener usuarios
-router.put("/userfind/:id",updateUser);
-router.get("/show/:id",showUser);
-router.delete("/delete/:id",DeleteUser)
+router.post("/usuario/c", createUser); // Crear usuario
+router.get("/usuario/g", getUsers); // Obtener usuarios
+router.put("/usuario/u/:id",updateUser);
+router.get("/usuario/s/:id",showUser);
+router.delete("/usuario/d/:id",DeleteUser)
 
 //--------------------------------------
 //Almacen

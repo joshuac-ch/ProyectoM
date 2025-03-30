@@ -46,7 +46,7 @@ const UpdateSubcategoria=async(req,res)=>{
         if(!UpdatesubCate){
             return res.status(404).json({message:"No se encontro el id"})
         }  //Revisar este a la ahora de hacer el cliente      
-        if(isNaN(descripcion,nombre,categoria_id)){
+        if(!descripcion||!nombre||!categoria_id){
             return res.status(404).json({message:"Faltan datos por llenar"})
         }
         
