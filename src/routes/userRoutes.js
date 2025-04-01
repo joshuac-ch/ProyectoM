@@ -77,7 +77,7 @@ router.put("/caja/u/:id",UpdateCaja)
 router.get("/caja/s/:id",ShowCaja)
 router.delete("/caja/d/:id",DeleteCaja)
 //---------------------------------------
-//Ventas
+//Ventasd
 //---------------------------------------
 router.get("/venta/g",GetVentas)
 router.post("/venta/c",InsertVenta)
