@@ -100,3 +100,4 @@ router.post("/movimiento/c",InsetMovimento)
 router.get("/movimiento/s/:id",Showmovimiento)
 router.put("/movimiento/u/:id",UpdateMovimiento)
 router.delete("/movimiento/d/:id",DestroyMovimiento)
+//
