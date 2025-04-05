@@ -14,6 +14,7 @@ const sequelize = require("../src/config/database.js"); // Asegúrate de importa
      Productos.belongsTo(models.Subcategorias ,{foreignKey:"subcategoria_id"})
      Productos.hasMany(models.movimientos_producto,{foreignKey:"producto_id"}) 
      Productos.hasMany(models.detalle_ventas,{foreignKey:"producto_id"})
+     Productos.hasMany(models.inventario,{foreignKey:"producto_id"})
     }
   }
   Productos.init({
@@ -23,7 +24,8 @@ const sequelize = require("../src/config/database.js"); // Asegúrate de importa
           autoIncrement: true
         },
     cantidad_disponible:{
-    type:DataTypes.NUMBER
+    type:DataTypes.NUMBER,
+    allowNull:true
     },
     image:{
       type:DataTypes.STRING
@@ -32,20 +34,17 @@ const sequelize = require("../src/config/database.js"); // Asegúrate de importa
       type:DataTypes.DATE
     },
     precio_ingreso:     {
-      type:DataTypes.NUMBER
+      type:DataTypes.FLOAT
     },
     precio_venta:       {
-      type:DataTypes.NUMBER
+      type:DataTypes.FLOAT
     },
     descripcion:        {
       type:DataTypes.STRING
     },
     codigo_producto:    {
       type:DataTypes.STRING
-    },
-    estado_producto:    {
-      type:DataTypes.STRING
-    },
+    },   
     nombre:             {
       type:DataTypes.STRING
     },

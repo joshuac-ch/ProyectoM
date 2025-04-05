@@ -34,7 +34,16 @@ module.exports = {
               model: "usuario",
               key: "id"
             
-            }}      
+            }},
+             tienda_id: {
+                    type: Sequelize.BIGINT,
+                    allowNull: false,
+                    references: {
+                      model: "almacen",
+                      key: "id"
+                    
+                    }},
+                          
     });
   },
   async down(queryInterface, Sequelize) {

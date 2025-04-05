@@ -13,10 +13,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       precio_unitario: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
       },
       subtotal: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
       },producto_id: {
             type: Sequelize.BIGINT,
             allowNull: false,

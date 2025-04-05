@@ -6,10 +6,11 @@ const {GetSubCategoria,CreateSubCategoria,ShowSubcategoria,UpdateSubcategoria,De
 const {GetProveedor,CreateProveedor,ShowProveedor,UpdateProveedor,DeleteProveedor}=require("../controllers/proveedorController.js")
 const {GetCLientes,CreateClient,showClient,UpdateCliente,DeleteCliente} =require("../controllers/clientesController.js")
 const {GetProductos,InserProductos,ShowProductos,UpdateProductos,DeleteProducto} =require("../controllers/productosController.js")
-const {GetCaja,InsertCaja,UpdateCaja,DeleteCaja,ShowCaja}=require("../controllers/cajaController.js")
+const {GetCaja,InsertCaja,UpdateCaja,DeleteCaja,ShowCaja, CerrarCaja, RegistrarMovimiento,ObtenerMovimientosCaja}=require("../controllers/cajaController.js")
 const {GetVentas,InsertVenta,UpdateVenta,ShowVenta,DeleteVenta}=require("../controllers/ventasController.js")
 const {GetDetalle,InsertDetalle,UpdateDetalle,DeleteDetalle,ShowDetalle}=require("../controllers/detalleVentasController.js")
 const {GetMovimiento,InsetMovimento,Showmovimiento,UpdateMovimiento,DestroyMovimiento}=require("../controllers/movimientosProductoController.js")
+const {GetInventario, CrearInventario, ActualizarInventario}=require("../controllers/inventarioController.js")
 module.exports = router = express();
 //--------------------------------------
 //Usuario
@@ -69,6 +70,12 @@ router.get("/producto/s/:id",ShowProductos)
 router.put("/producto/u/:id",UpdateProductos)
 router.delete("/producto/d/:id",DeleteProducto)
 //---------------------------------------
+//Inventario
+//---------------------------------------
+router.get("/inven/g",GetInventario)
+router.post("/inven/c",CrearInventario)
+router.put("/inven/u",ActualizarInventario)
+//---------------------------------------
 //Caja
 //---------------------------------------
 router.get("/caja/g",GetCaja)
@@ -76,6 +83,9 @@ router.post("/caja/c",InsertCaja)
 router.put("/caja/u/:id",UpdateCaja)
 router.get("/caja/s/:id",ShowCaja)
 router.delete("/caja/d/:id",DeleteCaja)
+router.put("/caja/cerrar/:tienda_id",CerrarCaja)
+router.post("/caja/movimiento",RegistrarMovimiento)
+router.get("/movimiento-caja/",ObtenerMovimientosCaja)
 //---------------------------------------
 //Ventasd
 //---------------------------------------

@@ -20,7 +20,7 @@
       autoIncrement:true,
       primaryKey:true
     },
-    total_venta: DataTypes.NUMBER,
+    total_venta: DataTypes.FLOAT,
     fecha_venta: DataTypes.DATE,
     cliente_id: {
       type: DataTypes.BIGINT,
@@ -37,6 +37,16 @@
         model: "usuario",
         key: "id"
       }
+      
+    },
+    almacen_id: {
+      type: DataTypes.BIGINT,
+      allowNull: false,
+      references: {
+        model: "almacen",
+        key: "id"
+      }
+      
     }
     
   }, {

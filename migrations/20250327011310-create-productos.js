@@ -11,7 +11,8 @@ module.exports = {
         type: Sequelize.BIGINT
       },
       cantidad_disponible: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull:true
       },
       fecha_vencimiento: {
         type: Sequelize.DATE
@@ -30,9 +31,6 @@ module.exports = {
       },
       image:{
         type:Sequelize.STRING
-      },
-      estado_producto: {
-        type: Sequelize.STRING
       },
       nombre: {
         type: Sequelize.STRING

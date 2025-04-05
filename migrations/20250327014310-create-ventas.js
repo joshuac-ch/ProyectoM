@@ -10,7 +10,7 @@ module.exports = {
         type: Sequelize.BIGINT
       },
       total_venta: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
       },
       fecha_venta: {
         type: Sequelize.DATE
@@ -28,8 +28,17 @@ module.exports = {
             references: {
               model: "usuario",
               key: "id"
+            },
+            
+          },
+          almacen_id: {
+            type: Sequelize.BIGINT,
+            allowNull: false,
+            references: {
+              model: "almacen",
+              key: "id"
             }
-          }      
+      }        
     });
   },
   async down(queryInterface, Sequelize) {
