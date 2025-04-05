@@ -11,6 +11,8 @@ const sequelize = require("../src/config/database.js"); // Asegúrate de importa
     static associate(models) {
       // define association here
       Cajas.belongsTo(models.usuario,{"foreignKey":"usuario_id"})
+      Cajas.belongsTo(models.almacen,{"foreignKey":"almacen_id"})
+      Cajas.hasMany(models.movimientoCaja,{"foreignKey":"caja_id"})
     }
   }
   Cajas.init({
@@ -19,12 +21,12 @@ const sequelize = require("../src/config/database.js"); // Asegúrate de importa
       primaryKey:true,
       autoIncrement:true
     },
-    saldo_final: DataTypes.NUMBER,
-    saldo_inicial: DataTypes.NUMBER,
-    total_ingresos: DataTypes.NUMBER,
-    total_egresos: DataTypes.NUMBER,
-    fecha_apertura: DataTypes.TIME,
-    fecha_cierre: DataTypes.TIME,
+    saldo_final:   {type: DataTypes.FLOAT},
+    saldo_inicial: {type:DataTypes.FLOAT},
+    total_ingresos: {type:DataTypes.FLOAT,defaultValue:0},
+    total_egresos:{type: DataTypes.FLOAT,defaultValue:0},
+    fecha_apertura: DataTypes.DATE,
+    fecha_cierre: DataTypes.DATE,
     usuario_id: {
       type: DataTypes.BIGINT,
       allowNull: false,
@@ -32,7 +34,15 @@ const sequelize = require("../src/config/database.js"); // Asegúrate de importa
         model: "usuario",
         key: "id"
       
-      }}
+      }},
+      tienda_id: {
+        type: DataTypes.BIGINT,
+        allowNull: false,
+        references: {
+          model: "almacen",
+          key: "id"
+        
+        }}
   
   }, {
     sequelize,

@@ -13,6 +13,9 @@ class Almacen extends Model {
       Almacen.hasMany(models.Usuario,{foreignKey:"almacen_id"})
       Almacen.hasMany(models.Productos,{foreignKey:"almacen_id"})
       Almacen.hasMany(models.movimientos_producto,{foreignKey:"almacen_id"})
+      Almacen.hasMany(models.cajas,{foreignKey:"almacen_id"})
+      Almacen.hasMany(models.inventario,{foreignKey:"almacen_id"})
+      Almacen.hasMany(models.ventas,{foreignKey:"almacen_id"})
     }
   }
 

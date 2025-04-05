@@ -15,9 +15,14 @@ const sequelize = require("../src/config/database.js"); // Asegúrate de importa
     }
   }
   detalle_ventas.init({
+    id: {
+      type: DataTypes.BIGINT,
+      primaryKey: true,
+      autoIncrement: true
+    },
     cantidad: DataTypes.INTEGER,
-    precio_unitario: DataTypes.INTEGER,
-    subtotal: DataTypes.INTEGER,
+    precio_unitario: DataTypes.FLOAT,
+    subtotal: DataTypes.FLOAT,
     producto_id: {
       type: DataTypes.BIGINT,
       allowNull: false,
