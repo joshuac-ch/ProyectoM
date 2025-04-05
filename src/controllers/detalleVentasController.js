@@ -1,4 +1,6 @@
 const DetalleVenta=require("../../models/detalle_ventas")
+const Ventas = require("../../models/ventas")
+const {ActualizarInventario}=require("../controllers/inventarioController")
 const GetDetalle=async(req,res)=>{
     try{
         const detalle=await DetalleVenta.findAll()
@@ -12,10 +14,26 @@ const GetDetalle=async(req,res)=>{
 }
 const InsertDetalle=async(req,res)=>{
     try{
+        //const cantidad=5
+        //const precio_unitario=12.5
+        ////const subtotal=13
+        //const producto_id=20
+        //const venta_id=2
+        //const almacen_id=5
+        //const usuario_id=1
         const {cantidad,precio_unitario,subtotal,producto_id,venta_id}=req.body
-        if(!cantidad || !precio_unitario || !subtotal || !producto_id || !venta_id){
+        if(!cantidad || !precio_unitario ||!producto_id || !venta_id){
             return res.status(404).json({message:"Faltan columnas por llenar"})
         }
+        // Obtener usuario_id y almacen_id de la tabla venta
+        const venta = await Ventas.findOne({ where: { id: venta_id } });
+        if (!venta) {
+            return res.status(404).json({ message: "Venta no encontrada" });
+        }
+        //subtotal=parseFloat(cantidad*precio_unitario) //se agrego esta linea
+        //const almacen_id=5
+        //const usuario_id=1
+        const { almacen_id, usuario_id } = req.body;
         const detale=await DetalleVenta.create({
             cantidad,
             precio_unitario,
@@ -23,7 +41,18 @@ const InsertDetalle=async(req,res)=>{
             producto_id,
             venta_id
         })
-        res.status(200).json({message:"Se inserto el detalle correctamente",detale})
+        await ActualizarInventario({
+            body:{
+                cantidad,
+                tipo_movimiento: "venta",
+                almacen_id,
+                producto_id,
+                usuario_id
+            }
+        }, {
+            status: () => ({ json: () => {} }) // Simulación de response
+        })
+        res.status(200).json({message:"Detalle de venta insertado y stock actualizado correctamente",detale})
     }catch(e){
         res.status(500).json({error:e.message})
     }
