@@ -25,7 +25,7 @@ const CrearInventario=async(req,res)=>{
         cantidad_actual,
         producto_id,
         almacen_id,
-        stock_maximo,
+        stock_maximo:cantidad_actual,
         stock_minimo,
         ultimo_movimiento:new Date()        
     })

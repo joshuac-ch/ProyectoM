@@ -12,15 +12,16 @@ const GetVentas=async(req,res)=>{
 }
 const InsertVenta=async(req,res)=>{
     try{
-        const {total_venta,fecha_venta,cliente_id,usuario_id}=req.body
-        if(!total_venta||!fecha_venta||!cliente_id||!usuario_id){
+        const {total_venta,fecha_venta,cliente_id,usuario_id,almacen_id}=req.body
+        if(!total_venta||!cliente_id||!usuario_id||!almacen_id){
             return res.status(404).json({message:"No se rellenaron campos"})
         }
         const insert=await Ventas.create({
             total_venta,
-            fecha_venta,
+            fecha_venta:new Date(),
             cliente_id,
-            usuario_id           
+            usuario_id,
+            almacen_id           
         })
         res.status(200).json({message:"Se inserto la venta",insert})
     }catch(e){
@@ -30,19 +31,20 @@ const InsertVenta=async(req,res)=>{
 const UpdateVenta=async(req,res)=>{
     try{
         const {id}=req.params
-        const {total_venta,fecha_venta,cliente_id,usuario_id}=req.body
+        const {total_venta,fecha_venta,cliente_id,usuario_id,almacen_id}=req.body
         const venta=await Ventas.findByPk(id)
         if(!venta){
             return res.status(404).json({message:"No se encontro esa  venta"})
         }
-        if(!total_venta||!fecha_venta||!cliente_id||!usuario_id){
+        if(!total_venta||!cliente_id||!usuario_id){
             return res.status(404).json({message:"No se completaron los campos"})
         }
         await venta.update({
             total_venta,
             fecha_venta,
             cliente_id,
-            usuario_id
+            usuario_id,
+            almacen_id
         })
         res.status(200).json(venta)
     }catch(e){
