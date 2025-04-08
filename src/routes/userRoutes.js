@@ -8,7 +8,7 @@ const {GetCLientes,CreateClient,showClient,UpdateCliente,DeleteCliente} =require
 const {GetProductos,InserProductos,ShowProductos,UpdateProductos,DeleteProducto} =require("../controllers/productosController.js")
 const {GetCaja,InsertCaja,UpdateCaja,DeleteCaja,ShowCaja, CerrarCaja, RegistrarMovimiento,ObtenerMovimientosCaja}=require("../controllers/cajaController.js")
 const {GetVentas,InsertVenta,UpdateVenta,ShowVenta,DeleteVenta}=require("../controllers/ventasController.js")
-const {GetDetalle,InsertDetalle,UpdateDetalle,DeleteDetalle,ShowDetalle}=require("../controllers/detalleVentasController.js")
+const {GetDetalle,InsertDetalle,UpdateDetalle,DeleteDetalle,ShowDetalle,InsertDetalleCompleto,DetalleEspecifico}=require("../controllers/detalleVentasController.js")
 const {GetMovimiento,InsetMovimento,Showmovimiento,UpdateMovimiento,DestroyMovimiento}=require("../controllers/movimientosProductoController.js")
 const {GetInventario, CrearInventario, ActualizarInventario}=require("../controllers/inventarioController.js")
 module.exports = router = express();
@@ -96,6 +96,9 @@ router.get("/venta/s/:id",ShowVenta)
 router.delete("/venta/d/:id",DeleteVenta)
 //---------------------------------------
 //Detalle Venta
+router.post("/detalle-venta-completo/",InsertDetalleCompleto) //Solo para boleta
+router.get("/detalle-especifico/:venta_id",DetalleEspecifico) //Solo para boleta
+//router.post("/detalle-venta-completo1/",crearVentaCompleta) //Solo para boleta
 //---------------------------------------
 router.get("/detalle/g",GetDetalle)
 router.post("/detalle/c",InsertDetalle)

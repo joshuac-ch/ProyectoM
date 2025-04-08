@@ -18,10 +18,10 @@ module.exports = {
         type: Sequelize.DATE
       },
       precio_ingreso: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
       },
       precio_venta: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
       },
       descripcion: {
         type: Sequelize.STRING
