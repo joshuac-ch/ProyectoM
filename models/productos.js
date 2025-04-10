@@ -25,13 +25,17 @@ const sequelize = require("../src/config/database.js"); // Asegúrate de importa
         },
     cantidad_disponible:{
     type:DataTypes.NUMBER,
-    allowNull:true
+    allowNull:true,
+    defaultValue:1
     },
     image:{
-      type:DataTypes.STRING
+      type:DataTypes.STRING,
+      defaultValue: null,
     },
     fecha_vencimiento:  {
-      type:DataTypes.DATE
+      type:DataTypes.DATE,
+      defaultValue: null,
+     
     },
     precio_ingreso:     {
       type:DataTypes.FLOAT
@@ -40,7 +44,8 @@ const sequelize = require("../src/config/database.js"); // Asegúrate de importa
       type:DataTypes.FLOAT
     },
     descripcion:        {
-      type:DataTypes.STRING
+      type:DataTypes.STRING,
+      allowNull: true,
     },
     codigo_producto:    {
       type:DataTypes.STRING
@@ -60,7 +65,8 @@ const sequelize = require("../src/config/database.js"); // Asegúrate de importa
     }
     ,proveedor_id:{
       type:DataTypes.BIGINT,
-      allowNull: false,
+      allowNull: true,
+      
       references: {
         model: "proveedor",
         key: "id"

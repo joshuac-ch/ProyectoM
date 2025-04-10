@@ -22,7 +22,7 @@ const InsertCaja=async(req,res)=>{
         }
         //----------------------
         //Comprobar que solo haya una caja abierta
-        const cajaAbierta=await Cajas.findOne({where:{fecha_cierre:null}})
+        const cajaAbierta=await Cajas.findOne({where:{fecha_cierre:null,tienda_id}})
         if(cajaAbierta){
             return res.status(400).json({message:"Solo puede haber una caja abierta en cada tienda"})
         }

@@ -34,6 +34,19 @@ const CrearInventario=async(req,res)=>{
         res.status(500).json({message:err})
     }
 }
+const ShowInventario=async(req,res)=>{
+    try{
+        const {id}=req.params
+        const inventario=await Inventario.findOne({where:{id}})
+        if(!inventario){
+            return res.status(404).json({message:"No se encontro el id"})
+        }
+        res.status(200).json(inventario)
+
+    }catch(err){
+        res.status(500).json({message:err})
+    }
+}
 const ActualizarInventario=async(req,res)=>{
     try{
         //const cantidad=50
@@ -41,6 +54,7 @@ const ActualizarInventario=async(req,res)=>{
         //const almacen_id=5
         //const producto_id=21
         //const usuario_id=1
+        //const {id}=req.params
         const {cantidad,tipo_movimiento,almacen_id,producto_id,usuario_id}=req.body
         //const {producto_id,cantidad_actual,almacen_id,stock_maximo,stock_minimo,ultimo_movimiento}=req.body
         let buscarInventario=await Inventario.findOne({where:{producto_id,almacen_id}})
@@ -83,4 +97,4 @@ const ActualizarInventario=async(req,res)=>{
     }
 }
 
-module.exports={GetInventario,CrearInventario,ActualizarInventario}
+module.exports={GetInventario,CrearInventario,ActualizarInventario,ShowInventario}

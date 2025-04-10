@@ -12,14 +12,27 @@ const GetProductos=async(req,res)=>{
 }
 const InserProductos=async(req,res)=>{
     try{
-        const {cantidad_disponible,fecha_vencimiento,precio_ingreso,precio_venta,image,descripcion,codigo_producto,nombre,unidad_medida,proveedor_id,almacen_id,subcategoria_id}=req.body
-        if(!cantidad_disponible||!image||!precio_ingreso||!precio_venta||!codigo_producto||!nombre||!unidad_medida||!proveedor_id||!almacen_id||!subcategoria_id){
+       const {cantidad_disponible,fecha_vencimiento,precio_ingreso,precio_venta,image,descripcion,codigo_producto,nombre,unidad_medida,proveedor_id,almacen_id,subcategoria_id}=req.body
+            //const image=""
+            //const cantidad_disponible=0
+            //const fecha_vencimiento=""
+            //const precio_ingreso=2.3
+            //const precio_venta=2.3
+            //const descripcion=""
+            //const codigo_producto="asd"           
+            //const nombre="asd"
+            //const unidad_medida="G"
+            //const proveedor_id=3
+            //const almacen_id=1
+            //const subcategoria_id=9
+        if(!precio_ingreso||!precio_venta||!codigo_producto||!nombre||!unidad_medida||!almacen_id||!subcategoria_id){
            return res.status(404).json({message:"Faltan columnas por llenar"})
         }
+        const fecha_final=fecha_vencimiento?new Date(fecha_vencimiento):new Date()
         const insert=await Productos.create({
             image,
             cantidad_disponible,
-            fecha_vencimiento,
+            fecha_vencimiento:fecha_final,
             precio_ingreso,
             precio_venta,
             descripcion,
@@ -58,7 +71,7 @@ const UpdateProductos=async(req,res)=>{
             precio_venta,descripcion,codigo_producto,
             nombre,unidad_medida,proveedor_id,almacen_id,subcategoria_id,image}=req.body
             
-        if(!cantidad_disponible||!image||!precio_ingreso||!precio_venta||!codigo_producto||!nombre||!unidad_medida||!proveedor_id||!almacen_id||!subcategoria_id){
+        if(!precio_ingreso||!precio_venta||!codigo_producto||!nombre||!unidad_medida||!almacen_id||!subcategoria_id){
            return res.status(404).json({message:"Faltan columnas por llenar"})
         }
         await productos.update({

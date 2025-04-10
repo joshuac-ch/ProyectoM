@@ -2,6 +2,7 @@ const DetalleVenta=require("../../models/detalle_ventas")
 const Ventas = require("../../models/ventas")
 const Producto=require("../../models/productos")
 const {ActualizarInventario}=require("../controllers/inventarioController")
+const inventario = require("../../models/inventario")
 const GetDetalle=async(req,res)=>{
     try{
         const detalle=await DetalleVenta.findAll()
@@ -57,19 +58,29 @@ const InsertDetalleCompleto = async (req, res) => {
             });
 
             detallesCreados.push(nuevoDetalle);
-
+            
             // Actualizar el inventario
-            await ActualizarInventario({
-                body: {
-                    cantidad,
-                    tipo_movimiento: "venta",
-                    almacen_id,
-                    producto_id,
-                    usuario_id
-                }
-            }, {
-                status: () => ({ json: () => {} }) // simulación de res
-            });
+            const cantidadInventario=await inventario.findOne({where:{almacen_id,producto_id}})
+            
+            if(!cantidadInventario){
+                return res.status(404).json({message:"No hay inventario de esa tienda"})
+            }
+            if(cantidad<=cantidadInventario.cantidad_actual){
+                await ActualizarInventario({
+                    body: {
+                        cantidad,
+                        tipo_movimiento: "venta",
+                        almacen_id,
+                        producto_id,
+                        usuario_id
+                    }
+                }, {
+                    status: () => ({ json: () => {} }) // simulación de res
+                });
+            }else{
+                return res.status(404).json({message:"No hay suficiente stock para realizar la venta"})
+            }
+            
         }
 
         res.status(200).json({

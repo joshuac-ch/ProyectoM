@@ -13,7 +13,7 @@ const GetCLientes=async(req,res)=>{
 const CreateClient=async(req,res)=>{
     try{
         const {telefono,correo,apellido,dirrecion,nombre,tipo_cliente}=req.body
-        if(!telefono||!correo||!apellido||!dirrecion||!nombre||!tipo_cliente){
+        if(!telefono||!correo||!apellido||!dirrecion||!nombre){
             return res.status(404).json({message:"Faltan campos por llenar"})
         }
     const cliente=await Clientes.create({
@@ -49,7 +49,7 @@ const UpdateCliente=async(req,res)=>{
             return res.status(404).json({message:"No se encontro el id"})
         }
         const {telefono,correo,apellido,dirrecion,nombre,tipo_cliente}=req.body
-        if(!telefono||!correo||!apellido||!dirrecion||!nombre||!tipo_cliente){
+        if(!telefono||!correo||!apellido||!dirrecion||!nombre){
             return res.status(404).json({message:"Faltan campos por llenar"})
         }
         await cliente.update({

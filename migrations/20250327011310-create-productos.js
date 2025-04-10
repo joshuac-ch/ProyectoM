@@ -15,7 +15,8 @@ module.exports = {
         allowNull:true
       },
       fecha_vencimiento: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: true,
       },
       precio_ingreso: {
         type: Sequelize.FLOAT
@@ -24,13 +25,15 @@ module.exports = {
         type: Sequelize.FLOAT
       },
       descripcion: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: true,
       },
       codigo_producto: {
         type: Sequelize.STRING
       },
       image:{
-        type:Sequelize.STRING
+        type:Sequelize.STRING,
+        allowNull: true,
       },
       nombre: {
         type: Sequelize.STRING
@@ -50,7 +53,7 @@ module.exports = {
       },
       proveedor_id:{
             type:Sequelize.BIGINT,
-            allowNull: false,
+            allowNull: true,
             references: {
               model: "proveedor",
               key: "id"
