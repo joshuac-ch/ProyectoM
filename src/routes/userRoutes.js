@@ -6,11 +6,12 @@ const {GetSubCategoria,CreateSubCategoria,ShowSubcategoria,UpdateSubcategoria,De
 const {GetProveedor,CreateProveedor,ShowProveedor,UpdateProveedor,DeleteProveedor}=require("../controllers/proveedorController.js")
 const {GetCLientes,CreateClient,showClient,UpdateCliente,DeleteCliente} =require("../controllers/clientesController.js")
 const {GetProductos,InserProductos,ShowProductos,UpdateProductos,DeleteProducto} =require("../controllers/productosController.js")
-const {GetCaja,InsertCaja,UpdateCaja,DeleteCaja,ShowCaja, CerrarCaja, RegistrarMovimiento,ObtenerMovimientosCaja}=require("../controllers/cajaController.js")
+const {GetCaja,InsertCaja,UpdateCaja,DeleteCaja,ShowCaja, CerrarCaja, RegistrarMovimiento,ObtenerMovimientosCaja, GetCajaEspecificaXAlmacen}=require("../controllers/cajaController.js")
 const {GetVentas,InsertVenta,UpdateVenta,ShowVenta,DeleteVenta}=require("../controllers/ventasController.js")
 const {GetDetalle,InsertDetalle,UpdateDetalle,DeleteDetalle,ShowDetalle,InsertDetalleCompleto,DetalleEspecifico}=require("../controllers/detalleVentasController.js")
 const {GetMovimiento,InsetMovimento,Showmovimiento,UpdateMovimiento,DestroyMovimiento}=require("../controllers/movimientosProductoController.js")
-const {GetInventario, CrearInventario, ActualizarInventario,ShowInventario}=require("../controllers/inventarioController.js")
+const {GetInventario, CrearInventario, ActualizarInventario,ShowInventario}=require("../controllers/inventarioController.js");
+const { ReporteVentasMensuales, probarRelacionVentas } = require("../controllers/reporteController.js");
 module.exports = router = express();
 //--------------------------------------
 //Usuario
@@ -80,6 +81,7 @@ router.put("/inven/u/",ActualizarInventario)
 //Caja
 //---------------------------------------
 router.get("/caja/g",GetCaja)
+router.get("/caja/especifica/:tienda_id",GetCajaEspecificaXAlmacen)
 router.post("/caja/c",InsertCaja)
 router.put("/caja/u/:id",UpdateCaja)
 router.get("/caja/s/:id",ShowCaja)
@@ -115,3 +117,6 @@ router.get("/movimiento/s/:id",Showmovimiento)
 router.put("/movimiento/u/:id",UpdateMovimiento)
 router.delete("/movimiento/d/:id",DestroyMovimiento)
 //
+//Reporte mensual
+router.get("/api/reportes/ventas-mensuales",ReporteVentasMensuales)
+router.get("/api/reportes/ventas-m",probarRelacionVentas)

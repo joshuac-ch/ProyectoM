@@ -21,7 +21,7 @@ const InsertVenta=async(req,res)=>{
             fecha_venta:new Date(),
             cliente_id,
             usuario_id,
-            almacen_id           
+            almacen_id                       
         })
         res.status(200).json({message:"Se inserto la venta",insert})
     }catch(e){
