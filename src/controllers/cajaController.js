@@ -11,6 +11,18 @@ const GetCaja=async(req,res)=>{
         res.status(500).json({error:e.message})
     }
 }
+const GetCajaEspecificaXAlmacen=async(req,res)=>{
+    try{
+        const {tienda_id}=req.params
+        const caja=await Cajas.findAll({where:{tienda_id}})        
+        if(!caja){
+            return res.status(404).json({message:"No se encontro la caja"})
+        }
+        res.status(200).json(caja)
+    }catch(err){
+        res.status(500).json({message:"Hubo un error no se encontro ese almacen"})
+    }
+}
 const InsertCaja=async(req,res)=>{
     try{
         const {
@@ -201,4 +213,4 @@ const ObtenerMovimientosCaja = async (req, res) => {
 };
 
 
-module.exports={GetCaja,InsertCaja,UpdateCaja,DeleteCaja,ShowCaja,CerrarCaja,RegistrarMovimiento,ObtenerMovimientosCaja}
+module.exports={GetCaja,InsertCaja,UpdateCaja,DeleteCaja,ShowCaja,CerrarCaja,RegistrarMovimiento,ObtenerMovimientosCaja,GetCajaEspecificaXAlmacen}

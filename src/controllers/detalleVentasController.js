@@ -3,6 +3,7 @@ const Ventas = require("../../models/ventas")
 const Producto=require("../../models/productos")
 const {ActualizarInventario}=require("../controllers/inventarioController")
 const inventario = require("../../models/inventario")
+const Cajas = require("../../models/cajas")
 const GetDetalle=async(req,res)=>{
     try{
         const detalle=await DetalleVenta.findAll()
@@ -21,13 +22,25 @@ const InsertDetalleCompleto = async (req, res) => {
             cliente_id,
             usuario_id,
             almacen_id,
+            metodo_pago,
+            descripcion_pago,
             productos // este es un array de productos con { producto_id, cantidad, precio_unitario }
         } = req.body;
 
         if (!productos || productos.length === 0) {
             return res.status(400).json({ message: "Debe incluir al menos un producto en la venta" });
         }
-
+        const caja=await Cajas.findOne({
+            where:{tienda_id:almacen_id,
+                   fecha_cierre:null 
+            }
+        })
+        if(!caja){
+            return res.status(404).json({message:"No se abrio una caja en esta tienda"})
+        }
+        if(!metodo_pago){
+            return res.status(404).json({message:"No selecciono metodo de pago"})
+        }
         // Crear la venta principal
         const ventita = await Ventas.create({
             total_venta,
@@ -35,6 +48,9 @@ const InsertDetalleCompleto = async (req, res) => {
             cliente_id,
             usuario_id,
             almacen_id,
+            metodo_pago,
+            descripcion_pago
+
         });
 
         // Registrar cada producto como detalle de venta
@@ -82,6 +98,8 @@ const InsertDetalleCompleto = async (req, res) => {
             }
             
         }
+        caja.total_ingresos+=parseFloat(total_venta)
+        await caja.save()
 
         res.status(200).json({
             message: "Venta y detalles registrados correctamente",
