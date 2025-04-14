@@ -11,7 +11,11 @@
      */
     static associate(models) {
       // define association here
-      Ventas.hasMany(models.detalle_ventas,{foreignKey:"venta_id"})
+      Ventas.hasMany(models.detalle_ventas,{foreignKey:"venta_id",as:"detalles"})
+      Ventas.belongsTo(usuario, {
+        foreignKey: 'usuario_id',
+        as: 'usuario'
+    });
     }
   }
   Ventas.init({
@@ -47,7 +51,16 @@
         key: "id"
       }
       
+    },
+    metodo_pago:{
+      type: DataTypes.STRING,
+      allowNull:true
+    },
+    descripcion_pago:{
+      type:DataTypes.TEXT,
+      allowNull:true
     }
+
     
   }, {
     sequelize,

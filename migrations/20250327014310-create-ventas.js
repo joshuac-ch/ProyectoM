@@ -38,6 +38,14 @@ module.exports = {
               model: "almacen",
               key: "id"
             }
+      },
+      metodo_pago:{
+        type:Sequelize.STRING,
+        allowNull:true
+      },
+      descripcion_pago:{
+        type:Sequelize.TEXT,
+        allowNull:true
       }        
     });
   },
