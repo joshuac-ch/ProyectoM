@@ -103,6 +103,7 @@ const InsertDetalleCompleto = async (req, res) => {
 
         res.status(200).json({
             message: "Venta y detalles registrados correctamente",
+            id:ventita.id,
             Venta: ventita,
             Detalles: detallesCreados
         });
