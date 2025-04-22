@@ -1,5 +1,12 @@
 const Inventario=require("../../models/inventario")
 const Movimiento_Producto=require("../../models/movimientos_producto")
+const dayjs = require("dayjs");
+const utc = require("dayjs/plugin/utc");
+const timezone = require("dayjs/plugin/timezone");
+const { DateTime } = require("luxon");
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
 const GetInventario=async(req,res)=>{
     try{
         const inventario=await Inventario.findAll()
@@ -21,13 +28,21 @@ const CrearInventario=async(req,res)=>{
     if(!cantidad_actual||!producto_id||!almacen_id){
         return res.status(404).json({message:"No se llenaron las columnas nesesarias"})
     }
+    //if(cantidad_actual>stock_maximo){
+    //    const stockMayorProducto=cantidad_actual
+    //}
+  
+    const buscar=await Inventario.findOne({where:{producto_id,almacen_id}})
+    if(buscar){
+        return res.status(404).json({message:"Ese producto ya existe en esa tienda"})
+    }
     const create=await Inventario.create({
         cantidad_actual,
         producto_id,
         almacen_id,
         stock_maximo:cantidad_actual,
         stock_minimo,
-        ultimo_movimiento:new Date()        
+        ultimo_movimiento:new Date() 
     })
     res.status(200).json(create)
     }catch(err){
@@ -73,16 +88,24 @@ const ActualizarInventario=async(req,res)=>{
         //si es una compra se aumenta 
         else if(tipo_movimiento==="compra"){
             nueva_cantidad+=cantidadNumerica
+            if(nueva_cantidad<=buscarInventario.stock_maximo){
+                await buscarInventario.update({ cantidad_actual:nueva_cantidad,ultimo_movimiento: new Date()});
+            }
+            else{
+                const nuevoStockMaximo=parseInt(cantidad,10)+parseInt(buscarInventario.stock_maximo,10)
+                await buscarInventario.update({ cantidad_actual:nueva_cantidad, stock_maximo:nuevoStockMaximo,ultimo_movimiento: new Date() });   
+            }             
+            
         }
         else{
             return {message:"Tipo de movimiento invalido "}
         }
-        // Actualizar inventario
-        await buscarInventario.update({ cantidad_actual:nueva_cantidad, ultimo_movimiento: new Date() });
+        // Actualizar inventario de la venta        
+        await buscarInventario.update({ cantidad_actual:nueva_cantidad,ultimo_movimiento: new Date() });
 
         //Registrar el movimiento en la tabla movimiento_producto
         await Movimiento_Producto.create({
-            razon:tipo_movimiento==="venta"?"venta de producto nuevo":"Compra de stock",
+            razon:tipo_movimiento==="venta"?"venta de producto nuevo":"Aumento de stock",
             tipo_movimiento,
             almacen_id,
             producto_id,
@@ -96,5 +119,17 @@ const ActualizarInventario=async(req,res)=>{
         res.status(500).json({message:err})
     }
 }
+const DeleteInventario=async(req,res)=>{
+    try{
+        const {id}=req.params
+        const inventraio=await Inventario.destroy({where:{id}})
+        if(!inventraio){
+            return res.status.json({message:"No se encontro ese inventario"})
+        }
+        res.status(200).json({message:"Se elimino correctamente el inventario"})
+    }catch(err){
+        res.status(500).json({message:err.message})
+    }
+}
 
-module.exports={GetInventario,CrearInventario,ActualizarInventario,ShowInventario}
+module.exports={GetInventario,CrearInventario,ActualizarInventario,ShowInventario,DeleteInventario}
