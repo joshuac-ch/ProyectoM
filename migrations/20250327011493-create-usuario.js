@@ -48,6 +48,18 @@ module.exports = {
     },{
       timestamps:false 
     });
+    await queryInterface.bulkInsert('Usuario',[{
+      username:"ninodev",
+      password:"123456",
+      nombre:"joshua",
+      apellido:"condorena",
+      correo:"condorenajoshua98@gmail.com",
+      telefono:994956506,
+      direccion:"jose carlos",
+      rol:"administrador",
+      almacen_id:1
+
+    }])
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Usuario');

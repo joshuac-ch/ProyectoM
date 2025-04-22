@@ -20,7 +20,12 @@ module.exports = {
       timestamps:false,
             
     });
+  await queryInterface.bulkInsert('Almacen',[{
+    descripcion:"Esta es la tienda 1",
+    nombre:"Tienda de Abarrotes",
+  }])
   },
+  
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Almacen');
   }

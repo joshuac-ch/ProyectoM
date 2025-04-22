@@ -31,7 +31,16 @@ module.exports = {
     },{
       timestamps:false
     });
+    await queryInterface.bulkInsert('Clientes',[{
+      telefono:999320822,
+      nombre:"Cliente",
+      apellido:"Anonimo",
+      correo:"nakanoi267@gmail.com",
+      tipo_cliente:"-",
+      dirrecion:"-",
+    }])
   },
+
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Clientes');
   }

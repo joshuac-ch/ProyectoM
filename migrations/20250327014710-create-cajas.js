@@ -10,16 +10,16 @@ module.exports = {
         type: Sequelize.BIGINT
       },
       saldo_final: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
       },
       saldo_inicial: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
       },
       total_ingresos:{
-        type:Sequelize.INTEGER
+        type:Sequelize.FLOAT
       },
       total_egresos: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
       },
       fecha_apertura: {
         type: Sequelize.DATE
