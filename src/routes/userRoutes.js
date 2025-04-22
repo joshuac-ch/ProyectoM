@@ -10,7 +10,7 @@ const {GetCaja,InsertCaja,UpdateCaja,DeleteCaja,ShowCaja, CerrarCaja, RegistrarM
 const {GetVentas,InsertVenta,UpdateVenta,ShowVenta,DeleteVenta}=require("../controllers/ventasController.js")
 const {GetDetalle,InsertDetalle,UpdateDetalle,DeleteDetalle,ShowDetalle,InsertDetalleCompleto,DetalleEspecifico}=require("../controllers/detalleVentasController.js")
 const {GetMovimiento,InsetMovimento,Showmovimiento,UpdateMovimiento,DestroyMovimiento}=require("../controllers/movimientosProductoController.js")
-const {GetInventario, CrearInventario, ActualizarInventario,ShowInventario}=require("../controllers/inventarioController.js");
+const {GetInventario, CrearInventario, ActualizarInventario,ShowInventario, DeleteInventario}=require("../controllers/inventarioController.js");
 const { ReporteVentasMensuales, probarRelacionVentas } = require("../controllers/reporteController.js");
 module.exports = router = express();
 //--------------------------------------
@@ -77,6 +77,7 @@ router.get("/inven/g",GetInventario)
 router.post("/inven/c",CrearInventario)
 router.get("/inven/s/:id",ShowInventario)
 router.put("/inven/u/",ActualizarInventario)
+router.delete("/inven/d/:id",DeleteInventario)
 //---------------------------------------
 //Caja
 //---------------------------------------
