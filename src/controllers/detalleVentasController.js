@@ -41,6 +41,7 @@ const InsertDetalleCompleto = async (req, res) => {
         if(!metodo_pago){
             return res.status(404).json({message:"No selecciono metodo de pago"})
         }
+         
         // Crear la venta principal
         const ventita = await Ventas.create({
             total_venta,
