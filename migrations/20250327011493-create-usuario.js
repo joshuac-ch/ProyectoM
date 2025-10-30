@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     //conexion con almacenes ID
-    await queryInterface.createTable('Usuario', {
+    await queryInterface.createTable('usuario', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -48,7 +48,7 @@ module.exports = {
     },{
       timestamps:false 
     });
-    await queryInterface.bulkInsert('Usuario',[{
+    await queryInterface.bulkInsert('usuario',[{
       username:"ninodev",
       password:"123456",
       nombre:"joshua",
@@ -62,6 +62,6 @@ module.exports = {
     }])
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Usuario');
+    await queryInterface.dropTable('usuario');
   }
 };

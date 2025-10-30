@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Almacen', {
+    await queryInterface.createTable('almacen', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -20,13 +20,13 @@ module.exports = {
       timestamps:false,
             
     });
-  await queryInterface.bulkInsert('Almacen',[{
+  await queryInterface.bulkInsert('almacen',[{
     descripcion:"Esta es la tienda 1",
     nombre:"Tienda de Abarrotes",
   }])
   },
   
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Almacen');
+    await queryInterface.dropTable('almacen');
   }
 };

@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Clientes', {
+    await queryInterface.createTable('clientes', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -31,7 +31,7 @@ module.exports = {
     },{
       timestamps:false
     });
-    await queryInterface.bulkInsert('Clientes',[{
+    await queryInterface.bulkInsert('clientes',[{
       telefono:999320822,
       nombre:"Cliente",
       apellido:"Anonimo",
@@ -42,6 +42,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Clientes');
+    await queryInterface.dropTable('clientes');
   }
 };

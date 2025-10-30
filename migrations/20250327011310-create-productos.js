@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     //Falta realizar relacion de prodcutos con almacen,proveedor y subcategoria
-    await queryInterface.createTable('Productos', {
+    await queryInterface.createTable('productos', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -77,6 +77,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Productos');
+    await queryInterface.dropTable('productos');
   }
 };
