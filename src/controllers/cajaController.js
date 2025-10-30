@@ -1,5 +1,5 @@
 const Cajas=require("../../models/cajas")
-const movimientoCaja = require("../../models/movimientoCaja")
+const movimientoCaja = require("../../models/movimientocaja")
 const GetCaja=async(req,res)=>{
     try{
         const data=await Cajas.findAll()
