@@ -7,7 +7,7 @@ sequelize.authenticate()
     .then(() => console.log("Conectado a MySQL"))
     .catch(err => console.error("Hubo un error al conectar:", err));
 
-const PORT = process.env.PORT ||6000;
+const PORT = process.env.PORT ||7500;
 app.listen(PORT, () => console.log(`Server2 corriendo en el siguiente puerto http://localhost:${PORT}`));
 /*
 import express from "express"
