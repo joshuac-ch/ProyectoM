@@ -64,7 +64,7 @@
     
   }, {
     sequelize,
-    modelName: 'Ventas',
+    modelName: 'ventas',
     timestamps:false
   });
   module.exports=Ventas

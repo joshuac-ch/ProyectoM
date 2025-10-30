@@ -39,7 +39,7 @@ const sequelize = require("../src/config/database.js"); // Asegúrate de importa
   }
 }, {
     sequelize,
-    modelName: 'Clientes',
+    modelName: 'clientes',
     timestamps:false
   }); 
 module.exports = Clientes

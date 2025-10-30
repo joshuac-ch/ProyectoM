@@ -35,7 +35,7 @@ const sequelize = require("../src/config/database.js"); // Asegúrate de importa
     }
   },{
     sequelize,
-    modelName: 'Subcategorias',
+    modelName: 'subcategorias',
     timestamps:false
   });
   module.exports= Subcategorias;

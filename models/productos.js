@@ -85,7 +85,7 @@ const sequelize = require("../src/config/database.js"); // Asegúrate de importa
 
   }, {
     sequelize,
-    modelName: 'Productos',
+    modelName: 'productos',
     timestamps:false
   });
 module.exports=Productos

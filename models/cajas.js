@@ -46,7 +46,7 @@ const sequelize = require("../src/config/database.js"); // Asegúrate de importa
   
   }, {
     sequelize,
-    modelName: 'Cajas',
+    modelName: 'cajas',
     timestamps:false
   });
  module.exports= Cajas;

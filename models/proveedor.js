@@ -43,7 +43,7 @@ const sequelize = require("../src/config/database.js"); // Asegúrate de importa
     
   }, {
     sequelize,
-    modelName: 'Proveedor',
+    modelName: 'proveedor',
     timestamps:false,
     freezeTableName:true
   });

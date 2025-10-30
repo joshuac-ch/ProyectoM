@@ -33,7 +33,7 @@ class Almacen extends Model {
     }
   }, {
     sequelize,
-    modelName: 'Almacen',
+    modelName: 'almacen',
     timestamps:false,
     freezeTableName: true,
     
